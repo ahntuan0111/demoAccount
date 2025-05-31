@@ -1,0 +1,34 @@
+extends ../layout
+block content
+  h1 Create Account 
+  if errors 
+    ul 
+      each err in errors 
+        li=err.msg
+  form(action="/acc/create", method="post", enctype="multipart/form-data") 
+    div
+      label(for="email") Email:
+      input(id="email", name="email", placeholder="abc@gmail.com")
+      if errors 
+        each err in errors
+          if err.path=='email'
+            span=err.msg
+    div
+      label(for="pwd") Password:
+      input(id="pwd", type="password", name="pwd")
+    div
+      label(for="confirm") Confirm:
+      input(id="confirm", type="password", name="confirm")
+    div
+      label(for="phone") Phone:
+      input(id="phone", name="phone", placeholder="09..")
+    div
+      label(for="image") Image:
+      input(type="file", id="image", name="image")
+    div
+      label(for="role") Role:
+      select(name="role", id="role")
+        option(value="user") User
+        option(value="admin") Admin
+    div
+      input(type="submit", value="Create")
